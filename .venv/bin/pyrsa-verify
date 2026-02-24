@@ -1,4 +1,4 @@
-#!/home/bmahn/my-ai-project/.venv/bin/python3
+#!/home/bmahne/my-ai-project/.venv/bin/python
 # -*- coding: utf-8 -*-
 import sys
 from rsa.cli import verify

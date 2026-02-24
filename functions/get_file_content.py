@@ -1,5 +1,5 @@
 import os
-
+from config import MAX_CHARS
 
 def get_file_content(working_directory, file_path):
     try:
@@ -7,13 +7,16 @@ def get_file_content(working_directory, file_path):
         target_file = os.path.normpath(os.path.join(absolute_path, file_path))
         valid_target_file = os.path.commonpath([absolute_path, target_file]) == absolute_path
 
-        if valid_target_file == False:
+        if not valid_target_file:
             return f'Error: Cannot read "{file_path}" as it is outside the permitted working directory'
         
-        if not os.path.isfile(file_path):
-            return f'Error: "File not found or is not a regular file: "{file_path}"'
+        if not os.path.isfile(target_file):
+            return f'Error: File not found or is not a regular file: "{file_path}"'
         
-        #i am on step 4 of ch2: Functions, l3:get file content at this point
-
+        with open(target_file, "r") as f:
+            content = f.read(MAX_CHARS)
+            if f.read(1):
+                content += f'[...File "{file_path}" truncated at {MAX_CHARS} characters]'
+        return content
     except Exception as e:
         return f"Error: {e}"

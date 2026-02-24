@@ -68,7 +68,7 @@ export-env {
         }
     }
 
-    let virtual_env = '/home/bmahn/my-ai-project/.venv'
+    let virtual_env = '/home/bmahne/my-ai-project/.venv'
     let bin = 'bin'
     let path_name = if (has-env 'Path') { 'Path' } else { 'PATH' }
     let venv_path = ([$virtual_env $bin] | path join)
